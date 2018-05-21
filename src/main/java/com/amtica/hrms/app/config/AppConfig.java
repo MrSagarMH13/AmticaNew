@@ -43,9 +43,9 @@ public class AppConfig {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		dataSource.setUrl(
-				"jdbc:mysql://smallbite.cgmdxzpwm9gx.ap-south-1.rds.amazonaws.com:3306/AmticaHRMS?useUnicode=true&characterEncoding=UTF-8");
-		dataSource.setUsername("SmallBite");
-		dataSource.setPassword("SmallBite2017");
+				"jdbc:mysql://localhost:3306/AmticaHRMS?useUnicode=true&characterEncoding=UTF-8");
+		dataSource.setUsername("root");
+		dataSource.setPassword("root");
 		return dataSource;
 	}
 
@@ -65,6 +65,7 @@ public class AppConfig {
 	Properties additionalProperties() {
 		Properties properties = new Properties();
 		properties.setProperty("hibernate.show_sql", "true");
+		properties.setProperty("hibernate.hbm2ddl.auto", "create");
 		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
 		return properties;
 	}
