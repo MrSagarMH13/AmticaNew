@@ -2,8 +2,13 @@ package com.amtica.hrms.tax;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.amtica.hrms.institute.Institute;
+import com.amtica.hrms.packg.details.PackageDetail;
+
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 /**
  * The persistent class for the Tax database table.
@@ -46,6 +51,9 @@ public class Tax implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date lastModifiedDateTime;
 
+	@OneToMany(mappedBy="tax")
+	private List<Institute> instituteList;
+	
 	public Tax() {
 	}
 
@@ -129,4 +137,29 @@ public class Tax implements Serializable {
 		this.lastModifiedDateTime = lastModifiedDateTime;
 	}
 
+	public List<Institute> getInstitute() {
+		return instituteList;
+	}
+
+	public void setInstitute(List<Institute> instituteList) {
+		this.instituteList = instituteList;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public Institute addInstitute(Institute institute) {
+		getInstitute().add(institute);
+		institute.setTax(this);
+
+		return institute;
+	}
+
+	public Institute removeInstitue(Institute institute) {
+		getInstitute().remove(institute);
+		institute.setTax(null);
+
+		return institute;
+	}
 }

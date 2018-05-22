@@ -13,6 +13,7 @@ public class PackageDetailsDTO {
 	private String lastModifiedDateTime;
 	private String featureId;
 	private String featureName;
+	
 	@JsonIgnore
 	private Feature myFeature;
 
